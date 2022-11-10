@@ -21,7 +21,7 @@ revenue_change_list = []
 revenue_average = 0
 
 #openning csv
-with open('budget_data.csv') as csvfile
+with open(budget_data_csv, 'r') as csvfile:  
     csvreader = csv.DictReader(csvfile)
 
     #loops for total month
