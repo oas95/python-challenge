@@ -58,3 +58,13 @@ print("Total Revenue: $%d\n" % total_profit)
 print("Average Change $%d\n" % revenue_average)
 print("Greatest Increase in Profits: %s ($%s)\n" % (greatest_increase[0], greatest_increase[1]))
 print("Greatest Decrease in Profits: %s ($%s)\n" % (greatest_decrease[0], greatest_decrease[1]))
+
+#write changes to csv
+with open(text_path, 'w') as file:
+    file.write("Financial Analysis\n")
+    file.write("---------------------\n")
+    file.write("Total Months: %d\n" % total_months)
+    file.write("Total Revenue: $%d\n" % total_profit)
+    file.write("Average Change $%d\n" % revenue_average)
+    file.write("Greatest Increase in Profits: %s ($%s)\n" % (greatest_increase[0], greatest_increase[1]))
+    file.write("Greatest Decrease in Profits: %s ($%s)\n" % (greatest_decrease[0], greatest_decrease[1]))
