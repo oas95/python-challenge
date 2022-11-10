@@ -1,23 +1,23 @@
 #import modules
-import os
 import csv
+import os
 
-#set path for file
+#setting path
 budget_data_csv = os.path.join("C:\\Users\\gbnlo\\python-challenge\\PyBank\\Resources\\budget_data.csv")
 
 #setting output
 text_path = "output.txt"
 
-#Setting  variables
+#Setting variables
 total_months = 0
-total_revenue = 0
+total_profit = 0
 revenue = []
-previous_revenue = 0
+previous_profit = 0
 month_of_change = []
-revenue_change = 0
+profit_change = 0
 greatest_decrease = ["", 9999999]
 greatest_increase = ["", 0]
-revenue_change_list = []
+profit_change_list = []
 revenue_average = 0
 
 #openning csv
@@ -30,14 +30,31 @@ with open(budget_data_csv, 'r') as csvfile:
         #Counting months 
         total_months += 1 
 
-        #Total_revenue calculation
-        total_revenue = total_revenue + int(row["Profit/Losses"])
+        #Total_profit calculation
+        total_profit = total_profit + int(row["Profit/Losses"])
 
-        #Average_Change in revenue calculation
-        revenue_change = float(row["Profit/Losess"]) - previous_revenue
-        previous_revenue = float(row["Profit/Losess"])
-        revenue_change_list = revenue_change_list + [revenue_change]
-        month_of_change = [month_of_change] + [row['Date']]
+        #Average_Change in profit calculation
+        profit_change = float(row["Profit/Losses"])- previous_profit
+        previous_profit = float(row["Profit/Losses"])
+        profit_change_list = profit_change_list + [profit_change]
+        month_of_change = [month_of_change] + [row["Date"]]
 
-        #Greatest increase in revenue 
-        
+        #Greatest increase in profit
+        if profit_change>greatest_increase[1]:
+            greatest_increase[1]= profit_change
+            greatest_increase[0] = row['Date']
+
+        #The greatest decrease in profit
+        if profit_change<greatest_decrease[1]:
+            greatest_decrease[1]= profit_change
+            greatest_decrease[0] = row['Date']
+    revenue_average = sum(profit_change_list)/len(profit_change_list)
+
+#Print to Terminal
+print("Financial Analysis\n")
+print("---------------------\n")
+print("Total Months: %d\n" % total_months)
+print("Total Revenue: $%d\n" % total_profit)
+print("Average Change $%d\n" % revenue_average)
+print("Greatest Increase in Profits: %s ($%s)\n" % (greatest_increase[0], greatest_increase[1]))
+print("Greatest Decrease in Profits: %s ($%s)\n" % (greatest_decrease[0], greatest_decrease[1]))
