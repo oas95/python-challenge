@@ -13,7 +13,9 @@ raymon_votes = 0
 
 #openning csv
 with open(election_data_csv, 'r') as csvfile:  
-    csvreader = csv.DictReader(csvfile)
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    header = next(csvreader)
 
     for row in csvreader:
 
@@ -32,9 +34,9 @@ with open(election_data_csv, 'r') as csvfile:
 candidates = ["Charles", "Diana", "Raymon"]
 votes = [charles_votes, diana_votes, raymon_votes]
 
-#Winner
+#making seperate file to find winner through max
 dict_cand_and_votes = dict(zip(candidates,votes))   
-winner = max(dict_cand_and_votes, winner=dict_cand_and_votes)
+winner = min(dict_cand_and_votes)
 
 #percentage calculation
 charles_percent = (charles_votes/total_votes)*100
