@@ -5,6 +5,9 @@ import os
 #setting path
 election_data_csv = os.path.join("C:\\Users\\gbnlo\\python-challenge\\PyPoll\\Resources\\election_data.csv")
 
+#setting output
+text_path = "poll_results.txt"
+
 #setting variables
 total_votes = 0 
 charles_votes = 0 
@@ -35,8 +38,8 @@ candidates = ["Charles", "Diana", "Raymon"]
 votes = [charles_votes, diana_votes, raymon_votes]
 
 #making seperate file to find winner through max
-dict_cand_and_votes = dict(zip(candidates,votes))   
-winner = min(dict_cand_and_votes)
+dict_candidates_and_votes = dict(zip(candidates,votes))
+winner = max(dict_candidates_and_votes, key=dict_candidates_and_votes.get)
 
 #percentage calculation
 charles_percent = (charles_votes/total_votes)*100
@@ -55,3 +58,16 @@ print(f"Raymon Anthony Doane: {raymon_percent:.3f}% ({raymon_votes})")
 print(f"----------------------------")
 print(f"Winner: {winner}")
 print(f"----------------------------")
+
+#write changes to csv
+with open(text_path, 'w') as file:
+    file.write(f"Election Results")
+    file.write(f"----------------------------")
+    file.write(f"Total Votes: {total_votes}")
+    file.write(f"----------------------------")
+    file.write(f"Charles Casper Stockham: {charles_percent:.3f}% ({charles_votes})")
+    file.write(f"Diana DeGette: {diana_percent:.3f}% ({diana_votes})")
+    file.write(f"Raymon Anthony Doane: {raymon_percent:.3f}% ({raymon_votes})")
+    file.write(f"----------------------------")
+    file.write(f"Winner: {winner}")
+    file.write(f"----------------------------")
