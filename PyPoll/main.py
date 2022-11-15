@@ -3,7 +3,7 @@ import csv
 import os
 
 #setting path
-election_data_csv = os.path.join("C:\\Users\\gbnlo\\python-challenge\\PyPoll\\Resources\\election_data.csv")
+election_data_csv = os.path.join("PyPoll", "Resources", "election_data.csv")
 
 #setting output
 text_path = "poll_results.txt"
