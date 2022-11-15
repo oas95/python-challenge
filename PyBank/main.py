@@ -3,7 +3,7 @@ import csv
 import os
 
 #setting path
-budget_data_csv = os.path.join("C:\\Users\\gbnlo\\python-challenge\\PyBank\\Resources\\budget_data.csv")
+budget_data_csv = os.path.join("PyBank", "Resources", "budget_data.csv"))
 
 #setting output
 text_path = "output.txt"
